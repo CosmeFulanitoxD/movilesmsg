@@ -1,0 +1,107 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run --machine --start-paused -d edge --devtools-server-address http://127.0.0.1:9100/ --target C:\Users\UsX\Desktop\Fluttercoffee\coffeechallenge\lib\main.dart
+
+## exception
+
+StateError: Bad state: Client is closed
+
+```
+#0      _HttpClient._openUrl (dart:_http/http_impl.dart:2743:7)
+#1      _HttpClient.getUrl (dart:_http/http_impl.dart:2632:48)
+#2      ChromeConnection.getUrl (package:webkit_inspection_protocol/webkit_inspection_protocol.dart:108:33)
+#3      ChromeConnection.getTabs (package:webkit_inspection_protocol/webkit_inspection_protocol.dart:53:26)
+#4      ChromeConnection.getTab (package:webkit_inspection_protocol/webkit_inspection_protocol.dart:90:31)
+<asynchronous suspension>
+#5      Chromium.close (package:flutter_tools/src/web/chrome.dart:512:15)
+<asynchronous suspension>
+#6      ChromiumDevice.stopApp (package:flutter_tools/src/web/web_device.dart:164:5)
+<asynchronous suspension>
+#7      ResidentWebRunner._cleanup (package:flutter_tools/src/isolated/resident_web_runner.dart:203:5)
+<asynchronous suspension>
+#8      ResidentWebRunner.cleanupAtFinish (package:flutter_tools/src/isolated/resident_web_runner.dart:191:5)
+<asynchronous suspension>
+#9      ResidentRunner.waitForAppToFinish (package:flutter_tools/src/resident_runner.dart:1482:5)
+<asynchronous suspension>
+#10     RunCommand.runCommand (package:flutter_tools/src/commands/run.dart:788:26)
+<asynchronous suspension>
+#11     FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1408:27)
+<asynchronous suspension>
+#12     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:153:19)
+<asynchronous suspension>
+#13     CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+<asynchronous suspension>
+#14     FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:420:9)
+<asynchronous suspension>
+#15     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:153:19)
+<asynchronous suspension>
+#16     FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:364:5)
+<asynchronous suspension>
+#17     run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:130:9)
+<asynchronous suspension>
+#18     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:153:19)
+<asynchronous suspension>
+#19     main (package:flutter_tools/executable.dart:93:3)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[!] Flutter (Channel stable, 3.24.1, on Microsoft Windows [Versi¢n 10.0.19045.4894], locale es-MX)
+    • Flutter version 3.24.1 on channel stable at C:\src\flutter
+    ! The flutter binary is not on your path. Consider adding C:\src\flutter\bin to your path.
+    ! The dart binary is not on your path. Consider adding C:\src\flutter\bin to your path.
+    • Upstream repository https://github.com/flutter/flutter.git
+    • Framework revision 5874a72aa4 (3 weeks ago), 2024-08-20 16:46:00 -0500
+    • Engine revision c9b9d5780d
+    • Dart version 3.5.1
+    • DevTools version 2.37.2
+    • If those were intentional, you can disregard the above warnings; however it is recommended to use "git" directly to perform update checks and upgrades.
+
+[✓] Windows Version (Installed version of Windows is version 10 or higher)
+
+[✗] Android toolchain - develop for Android devices
+    ✗ Unable to locate Android SDK.
+      Install Android Studio from: https://developer.android.com/studio/index.html
+      On first launch it will assist you in installing the Android SDK components.
+      (or visit https://flutter.dev/to/windows-android-setup for detailed instructions).
+      If the Android SDK has been installed to a custom location, please use
+      `flutter config --android-sdk` to update to that location.
+
+
+[✗] Chrome - develop for the web (Cannot find Chrome executable at .\Google\Chrome\Application\chrome.exe)
+    ! Cannot find Chrome. Try setting CHROME_EXECUTABLE to a Chrome executable.
+
+[✗] Visual Studio - develop Windows apps
+    ✗ Visual Studio not installed; this is necessary to develop Windows apps.
+      Download at https://visualstudio.microsoft.com/downloads/.
+      Please install the "Desktop development with C++" workload, including all of its default components
+
+[!] Android Studio (not installed)
+    • Android Studio not found; download from https://developer.android.com/studio/index.html
+      (or visit https://flutter.dev/to/windows-android-setup for detailed instructions).
+
+[✓] IntelliJ IDEA Ultimate Edition (version 2023.3)
+    • IntelliJ at C:\Program Files\JetBrains\IntelliJ IDEA 2023.3.3
+    • Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    • Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+
+[✓] VS Code (version 1.93.1)
+    • VS Code at C:\Users\UsX\AppData\Local\Programs\Microsoft VS Code
+    • Flutter extension version 3.96.0
+
+[✓] Connected device (2 available)
+    • Windows (desktop) • windows • windows-x64    • Microsoft Windows [Versi¢n 10.0.19045.4894]
+    • Edge (web)        • edge    • web-javascript • Microsoft Edge 128.0.2739.67
+
+[✓] Network resources
+    • All expected network resources are available.
+
+! Doctor found issues in 5 categories.
+```

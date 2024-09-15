@@ -10,7 +10,8 @@ class Drink {
   String description;
   Color LightColor;
   Color darkColor;
+  String imageCup;
 
   Drink(this.name,this.conName,this.backgroundImage,this.imageTop,this.imageSmall
-  ,this.imageBlur,this.description,this.LightColor,this.darkColor);
+  ,this.imageBlur,this.description,this.LightColor,this.darkColor,this.imageCup);
 }
