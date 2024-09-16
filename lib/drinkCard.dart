@@ -90,7 +90,7 @@ class Drinkcard extends StatelessWidget {
           offset: Offset(-ColumnAnimation, 0),
           child: Column(
             children: <Widget>[
-              Text('Frappuccino', 
+              Text('Licor', 
               style: TextStyle(
                 fontSize: 35, 
                 fontWeight: FontWeight.bold, 
@@ -113,7 +113,7 @@ class Drinkcard extends StatelessWidget {
                 SizedBox(height: 15,),
                 Container(
                   height: 40,
-                  decoration: BoxDecoration(color: mAppGreen,borderRadius: BorderRadius.circular(20)),
+                  decoration: BoxDecoration(color: const Color.fromARGB(255, 78, 127, 173),borderRadius: BorderRadius.circular(20)),
                   child: Center(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -151,7 +151,8 @@ class Drinkcard extends StatelessWidget {
   buildBlurImage(double cardWidth, Size size) {
     return Positioned(
       right: cardWidth/2-60+animate,
-      bottom: size.height*.10,
+      bottom: size.height*.30,
+      width: 250,
       child: Image.asset(drink.imageBlur),
     );
   }
@@ -159,7 +160,8 @@ class Drinkcard extends StatelessWidget {
   Widget buildSmallImage(Size size) {
     return Positioned(
       right: -10+animate,
-      top: size.height*.3,
+      top: size.height*.5,
+      width: 100,
       child: Image.asset(drink.imageSmall)
     );
   }
@@ -168,6 +170,7 @@ class Drinkcard extends StatelessWidget {
     return Positioned(
       left: cardWidth/4-animate,
       bottom: size.height*.15 + cardHeight-25,
+      width: 100,
       child: Image.asset(drink.imageTop)
       );
   }

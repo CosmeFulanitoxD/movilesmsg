@@ -1,7 +1,9 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:coffeechallenge/colors.dart';
 import 'package:coffeechallenge/drink.dart';
 import 'package:coffeechallenge/drinkCard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -41,15 +43,36 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      
+      floatingActionButtonLocation: ExpandableFab.location,
+      floatingActionButton: ExpandableFab(
+        openButtonBuilder: DefaultFloatingActionButtonBuilder(
+
+          fabSize: ExpandableFabSize.regular,
+          child: Icon(Icons.menu)
+        ) ,
+        closeButtonBuilder: 
+        DefaultFloatingActionButtonBuilder(
+          fabSize: ExpandableFabSize.regular,
+          child: const Icon(Icons.close)
+          ),
+        
+        children: [
+          FloatingActionButton(onPressed: (){}, child: Icon(Icons.flutter_dash),),
+          FloatingActionButton(onPressed: (){}, child: Icon(Icons.man),),
+          FloatingActionButton(onPressed: (){}, child: Icon(Icons.bed_rounded),),
+        ],
+        ),
       body: SafeArea(child: Stack(
         children: <Widget>[
           buildToolbar(),
+          
+          buildcarrousel(),
           buildLogo(size),
           buildPager(size),
-          buildPageIndicator()
+          buildPageIndicator(),
         ],
       ),
+      
       ),
     );
   }
@@ -83,10 +106,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
               offset: Offset(200*(1-animation.value).toDouble(), 0),
               child: Image.asset(
                 'images/drawer.png',width: 30,height: 30,
-                ),
+                ), 
+                
             );
           }
         ),
+        
         SizedBox(
           width: 20,
           ),
@@ -110,11 +135,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
             child: InkWell(
               onTap: () => controller.isCompleted?controller.reverse():controller.forward(),
               child: Image.asset(
-                'images/logo.png',width: 50,height: 50,
+                'images/logo2.png',width: 50,height: 50,
                 ),
             ),
               );
-        }
+        },
+        
       ),
       );
   }
@@ -138,30 +164,36 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
       ),
     );
   }
-
+List<String> getphase(){
+  List<String> list = [];
+  list.add("images/1.jpg");
+  list.add("images/2.jpg");
+  list.add("images/3.jpg");
+  return list;
+}
   
   List<Drink> getDrinks() {
     List<Drink> list = [];
-    list.add(Drink('Tirami', 
-    'Su', 
-    'images/blur_image.png', 
-    'images/bean_top.png', 
-    'images/bean_small.png', 
-    'images/bean_blur.png', 
-    'then top whit whipped cream and mocha drizzle \n java joy', 
+    list.add(Drink('Jack', 
+    'Daniels', 
+    'images/blur_image2.png', 
+    'images/bean_top2.png', 
+    'images/bean_small2.png', 
+    'images/bean_blur2.png', 
+    'Licor jack daniels con un descuento especial solo \n Por tiempo limitado', 
     mBrownLight, 
     mBrown,
-    'images/Cup1.png'));
+    'images/Cup2.png'));
     list.add(Drink('airama', 
     'Sa', 
-    'images/blur_image.png', 
-    'images/bean_top.png', 
-    'images/bean_small.png', 
-    'images/bean_blur.png', 
+    'images/blur_image2.png', 
+    'images/bean_top2.png', 
+    'images/bean_small2.png', 
+    'images/bean_blur2.png', 
     'then tap what whipped cream and mocha drizzle \n java joy', 
     mBrownLight, 
     mBrown,
-    'images/Cup1.png'));
+    'images/Cup2.png'));
     return list;
   }
   
@@ -201,5 +233,38 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
       decoration: BoxDecoration(
           color: color, borderRadius: BorderRadius.circular(20)),
     );
+  }
+  
+  Widget buildcarrousel() {
+    return Positioned(
+      
+      child: Container(
+                    
+                    height: MediaQuery.of(context).size.height-700,
+
+        //color: Colors.black,
+        child: AnimatedBuilder(
+          animation: controller,
+          builder: (context, snapshot) {
+            return Opacity(
+                opacity: 1- controller.value,
+                child: CarouselSlider(items: [1,2,3].map((i){
+                  return Container(
+                    
+                    width: MediaQuery.of(context).size.width,
+                     margin: EdgeInsets.only(top: 100,bottom: 20),
+                    decoration: BoxDecoration(color: Colors.amber,
+                    borderRadius: BorderRadius.circular(10)),
+                    child: Image.asset(getphase().elementAt(i-1)),
+                  );
+                }).toList(),
+                 options: CarouselOptions(height: 300)
+                 ),
+              );
+          }
+        ),
+      ),
+    );
+
   }
 }
